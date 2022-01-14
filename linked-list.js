@@ -18,6 +18,18 @@ class LinkedList {
     for (let val of vals) this.push(val);
   }
 
+  _get(idx) {
+    let cur = this.head;
+    let count = 0;
+
+    while (cur !== null && count != idx) {
+      count += 1;
+      cur = cur.next;
+    }
+
+    return cur;
+  }
+
   /** push(val): add new value to end of list. */
 
   push(val) {
@@ -30,35 +42,37 @@ class LinkedList {
       this.tail.next = newNode;
       this.tail = newNode;
     }
-    
-    this.length++
+
+    this.length++;
   }
 
   /** unshift(val): add new value to start of list. */
 
   unshift(val) {
-    const newNode = new Node(val)
+    const newNode = new Node(val);
 
     if (this.head === null) {
       this.head = newNode;
     } else {
       newNode.next = this.head;
-      this.head = newNode
+      this.head = newNode;
     }
 
-    if (this.length === 0) this.tail = this.head
-    this.length++
+    if (this.length === 0) this.tail = this.head;
+    this.length++;
   }
 
   /** pop(): return & remove last item. */
 
   pop() {
-    
+    return this.removeAt(this.length - 1);
   }
 
   /** shift(): return & remove first item. */
 
-  shift() {}
+  shift() {
+    return this.removeAt(this.head);
+  }
 
   /** getAt(idx): get val at idx. */
 
@@ -74,7 +88,20 @@ class LinkedList {
 
   /** removeAt(idx): return & remove item at idx, */
 
-  removeAt(idx) {}
+  removeAt(idx) {
+    if (idx >= this.length || idx < 0) {
+      throw new Error("Invalid Index.");
+    }
+
+    if (idx === 0) {
+      let val = this.head.val;
+      this.head = this.head.next;
+      this.length--;
+
+      if (this.length < 2) this.tail = this.head;
+      return val;
+    }
+  }
 
   /** average(): return an average of all values in the list */
 
