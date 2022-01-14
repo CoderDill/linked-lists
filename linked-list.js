@@ -21,56 +21,64 @@ class LinkedList {
   /** push(val): add new value to end of list. */
 
   push(val) {
+    const newNode = new Node(val);
 
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    
+    this.length++
   }
 
   /** unshift(val): add new value to start of list. */
 
   unshift(val) {
+    const newNode = new Node(val)
 
+    if (this.head === null) {
+      this.head = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode
+    }
+
+    if (this.length === 0) this.tail = this.head
+    this.length++
   }
 
   /** pop(): return & remove last item. */
 
   pop() {
-
+    
   }
 
   /** shift(): return & remove first item. */
 
-  shift() {
-
-  }
+  shift() {}
 
   /** getAt(idx): get val at idx. */
 
-  getAt(idx) {
-
-  }
+  getAt(idx) {}
 
   /** setAt(idx, val): set val at idx to val */
 
-  setAt(idx, val) {
-
-  }
+  setAt(idx, val) {}
 
   /** insertAt(idx, val): add node w/val before idx. */
 
-  insertAt(idx, val) {
-
-  }
+  insertAt(idx, val) {}
 
   /** removeAt(idx): return & remove item at idx, */
 
-  removeAt(idx) {
-
-  }
+  removeAt(idx) {}
 
   /** average(): return an average of all values in the list */
 
-  average() {
-    
-  }
+  average() {}
 }
 
 module.exports = LinkedList;
